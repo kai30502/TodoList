@@ -1,0 +1,24 @@
+.sidebar {
+  background-color: #E9ECEF;
+  color: #343A40;
+  padding: 20px;
+}
+
+.navLink {
+  color: #343A40;
+  padding: 10px;
+  text-decoration: none;
+  transition: 0.2s;
+  border-radius: 5px;
+}
+
+.navLink:hover{
+  background-color: #DEE2E6;
+}
+
+.navLink.active {
+  background-color: #DEE2E6;
+  font-weight: bold;
+}
+
+
