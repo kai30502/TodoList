@@ -1,0 +1,100 @@
+/* 外層包裝置中 */
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 登入框 */
+.loginBox {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 標題 */
+.title {
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 表單 */
+.form {
+    width: 100%;
+}
+
+/* 輸入框群組 */
+.inputGroup {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+/* 輸入框底線樣式 */
+.input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    outline: none;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+/* 聚焦時底線變色 */
+.input:focus {
+    border-bottom: 2px solid #212529;
+}
+
+/* 標籤效果：浮動標籤 */
+.label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 16px;
+    color: #999;
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
+
+/* 當 input 有值或 focus 時，標籤浮起 */
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+    top: -10px;
+    font-size: 12px;
+    color: #495057;
+}
+
+/* 按鈕 */
+.button {
+    width: 100%;
+    padding: 12px;
+    background-color: #495057;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #6C757D;
+}
+
+/* 註冊文字 */
+.registerText {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
