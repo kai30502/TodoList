@@ -15,7 +15,7 @@ router.get('/', async (req: any, res: any) => {
     let connection;
     try {
         connection = await mysql.createConnection(dbconfig);
-        let sql = 'SELECT * FROM todolist.todos';
+        let sql = 'SELECT * FROM todos ORDER BY created_at DESC';
         const [rows] = await connection.execute(sql);
         res.json(rows);
     } catch (err) {

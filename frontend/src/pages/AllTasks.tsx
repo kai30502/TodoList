@@ -6,9 +6,10 @@ function AllTasks() {
     interface Task {
         id: number;
         title: string;
-        description: string;
-        due_date: string;
         color: string;
+        description: string;
+        created_at: string;
+        due_date: string;
     }
 
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -30,7 +31,8 @@ function AllTasks() {
                 <div className='col-lg-3 col-md-6 col-sm-12' key={index}>
                     <div className={styles.single_stick} style={{backgroundColor:`${task.color}`}}>
                         <h3 className={styles.stick_title}>{task.title}</h3>
-                        <p className={styles.stick_subtitle}>截止日期：{task.due_date}</p>
+                        <p className={styles.stick_subtitle}>建立日期：{new Date(task.created_at).toLocaleString()}</p>
+                        <p className={styles.stick_subtitle}>截止日期：{new Date(task.due_date).toLocaleString()}</p>
                         <p className={styles.card_content}>{task.description}</p>
                     </div>
                 </div>
