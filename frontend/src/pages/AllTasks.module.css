@@ -1,0 +1,22 @@
+.AllTasks_title {
+    margin-bottom: 50px;
+}
+
+.single_stick {
+    background-color: #CED4DA;
+    padding: 15px;
+    height: 360px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 15px;
+}
+
+
+
+.stick_subtitle {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.card_content {
+    margin-bottom: 12px;
+}
