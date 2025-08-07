@@ -12,6 +12,7 @@ function Sidebar() {
         <NavLink to="/TodayTasks" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}><i className="bi bi-bell-fill"> 今日事項</i></NavLink>
         <NavLink to="/CompletedTasks" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}><i className="bi bi-list-check"> 已完成</i></NavLink>
         <NavLink to="/IncompleteTasks" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}><i className="bi bi-ban"> 未完成</i></NavLink>
+        <NavLink to="/Register"></NavLink>
       </div>
     </nav>
   );

@@ -4,6 +4,7 @@ import consumers = require("stream/consumers");
 const express = require('express');
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcrypt');
+const validator = require('validator');
 
 const router = express.Router();
 
@@ -25,10 +26,29 @@ router.post('/', async (req: any, res: any) => {
     }
 
     const { username, email, password } = req.body;
+
+    if (validator.isEmail(email) === false) {
+        return res.status(400).json({ message: "電子信箱格式不正確" });
+    }
+
     let connection;
     try {
         const hashedPassword = await hashPassword(password);
         connection = await mysql.createConnection(dbconfig);
+        const [usernameRows] = await connection.execute(
+            'SELECT * FROM users WHERE username = ?',
+            [username]
+        )
+        if (usernameRows.length > 0) {
+            return res.status(400).json({ message: "使用者名稱已存在" });
+        }
+        const [emailRows] = await connection.execute(
+            'SELECT * FROM users WHERE email = ?',
+            [email]
+        );
+        if (emailRows.length > 0) {
+            return res.status(400).json({ message: "電子信箱已被使用" });
+        }
         await connection.execute(
             'INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)',
             [username, email, hashedPassword]

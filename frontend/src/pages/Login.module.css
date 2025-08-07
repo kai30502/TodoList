@@ -98,3 +98,23 @@
     font-size: 14px;
     color: #666;
 }
+
+/* 註冊按鈕 */
+.registerButton {
+    background-color: transparent;
+    border: none;
+    color: #495057;
+    border-radius: 5px;
+    margin: 8px 16px;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.registerButton:hover {
+    color: #212529;
+}
+

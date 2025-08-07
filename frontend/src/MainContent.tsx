@@ -6,6 +6,7 @@ import AllTasks from "./pages/AllTasks";
 import CompletedTasks from "./pages/CompletedTasks";
 import IncompleteTasks from "./pages/IncompleteTasks";
 import TodayTasks from "./pages/TodayTasks";
+import Register from "./pages/Register";
 
 function MainContent() {
   return (
@@ -17,6 +18,7 @@ function MainContent() {
         <Route path="/CompletedTasks" element={<CompletedTasks />} />
         <Route path="/IncompleteTasks" element={<IncompleteTasks />} />
         <Route path="/TodayTasks" element={<TodayTasks />} />
+        <Route path="/Register" element={<Register />} />
       </Routes>
     </main>
   );
