@@ -32,6 +32,9 @@ router.post('/', async (req: any, res: any) => {
             'SELECT id, password_hash FROM users WHERE username = ?',
             [username]
         );
+        if (!rows || rows.length === 0) {
+            return res.status(401).json({ message: "使用者名稱或密碼錯誤" });
+        }
         
         const isValid = await verifyPassword(password, rows[0].password_hash);
         if (!isValid) {
