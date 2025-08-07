@@ -27,7 +27,7 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
         let connection;
         try {
             connection = await mysql.createConnection(dbconfig);
-            const [rows] = await connection.execute('SELECT id, username, email FROM users WHERE id = ?',
+            const [rows] = await connection.execute('SELECT id, username, email, created_at FROM users WHERE id = ?',
                 [id]
             );
                 

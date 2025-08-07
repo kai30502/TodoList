@@ -38,7 +38,7 @@ router.post('/', async (req: any, res: any) => {
             return res.status(401).json({message: "使用者名稱或密碼錯誤"});
         }
         const token = jwt.sign({ id: rows[0].id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+        res.cookie('token', token, { httpOnly: true, secure: false, sameSite: 'lax' });
         res.status(200).json({ message: "使用者登入成功"});
     } catch (err) {
         console.log("使用者登入失敗", err);
