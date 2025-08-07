@@ -28,6 +28,7 @@ function Login() {
 
             if (res.ok) {
                 alert('登入成功！');
+                navigate('/Member');
             } else {
                 setError(data.message || '登入失敗');
             }
