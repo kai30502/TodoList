@@ -23,11 +23,13 @@ function Login() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ username, password }),
+                credentials: 'include'
             });
             const data = await res.json();
 
             if (res.ok) {
                 alert('登入成功！');
+                navigate('/Member');
             } else {
                 setError(data.message || '登入失敗');
             }

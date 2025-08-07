@@ -1,0 +1,50 @@
+.wrapper {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.card p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #555;
+}
+
+.card strong {
+    color: #212529;
+}
+
+/* 登出按鈕 */
+.logoutButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.logoutButton:hover {
+    background-color: #c82333;
+}

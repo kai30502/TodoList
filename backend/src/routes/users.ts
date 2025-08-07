@@ -5,6 +5,7 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
+const verifyToken = require('../middlewares/verifytoken');
 
 const router = express.Router();
 
@@ -64,5 +65,15 @@ router.post('/', async (req: any, res: any) => {
     }
 });
 
+// 取得會員資料
+router.get('/', verifyToken, async (req: any, res: any) => {
+    try {
+        const { id, username, email, created_at } = req.user;
+        res.status(200).json({ id, username, email, created_at });
+    } catch (err) {
+        console.error("取得會員資料失敗", err);
+        res.status(500).json({ message: "取得會員資料失敗" });
+    }
+});
 
 module.exports = router;
