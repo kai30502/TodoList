@@ -10,8 +10,12 @@ app.use(express.json());
 app.use(cors());
 
 const todos = require('./routes/todo');
+const users = require('./routes/users');
+const login = require('./routes/login');
 
 app.use('/api/todos', todos);
+app.use('/api/users', users);
+app.use('/api/login', login);
 
 app.listen(
     port, '0.0.0.0', () => {
