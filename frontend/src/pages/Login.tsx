@@ -1,7 +1,12 @@
 import styles from './Login.module.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 function Member() {
+
+    const navigate = useNavigate();
+
 
     const [username, setusername] = useState('');
     const [password, setPassword] = useState('');
@@ -48,7 +53,7 @@ function Member() {
                             value={username}
                             onChange={(e) => setusername(e.target.value)}
                         />
-                        <label htmlFor="username" className={styles.label}>電子信箱</label>
+                        <label htmlFor="username" className={styles.label}>使用者名稱</label>
                     </div>
                     <div className={styles.inputGroup}>
                         <input
@@ -65,7 +70,15 @@ function Member() {
                     </div>
                     <button type="submit" className={styles.button}>登入</button>
                     {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <p className={styles.registerText}>還沒有帳號？</p>
+                    <p className={styles.registerText}>還沒有帳號？ 
+                        <button
+                            type="button"
+                            className={styles.registerButton}
+                            onClick={() => navigate('/Register')}
+                        >
+                            註冊
+                        </button>
+                    </p>
                 </form>
             </div>
         </div>
