@@ -17,10 +17,12 @@ app.use(cookieParser());
 const todos = require('./routes/todo');
 const users = require('./routes/users');
 const login = require('./routes/login');
+const logout = require('./routes/logout');
 
 app.use('/api/todos', todos);
 app.use('/api/users', users);
 app.use('/api/login', login);
+app.use('/api/logout', logout);
 
 app.listen(
     port, '0.0.0.0', () => {

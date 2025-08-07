@@ -1,7 +1,10 @@
 import styles from './Member.module.css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Member() {
+
+    const navigator = useNavigate();
 
     type User = {
         id: number;
@@ -45,7 +48,16 @@ function Member() {
             ) : (
                 <p>載入中...</p>
             )}
-            <button className={styles.logoutButton}>
+            <button
+                className={styles.logoutButton}
+                onClick={async () => {
+                    const response = await fetch('http://localhost:3000/api/logout', { credentials: 'include', method: 'POST' });
+                    const data = await response.json();
+                    setUser(null);
+                    alert(data.message)
+                    navigator('/Login')
+                }}
+            >
                 登出
             </button>
         </div>

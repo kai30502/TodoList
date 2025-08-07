@@ -37,6 +37,7 @@ function Register() {
 
             if (res.ok) {
                 alert('註冊成功！');
+                navigate('/Login');
             } else {
                 setError(data.message || '註冊失敗');
             }
