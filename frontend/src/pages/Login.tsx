@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-function Member() {
+function Login() {
 
     const navigate = useNavigate();
 
@@ -85,4 +85,4 @@ function Member() {
     );
 }
 
-export default Member;
+export default Login;
