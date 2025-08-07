@@ -6,7 +6,7 @@ function Sidebar() {
     <nav className={`${styles.sidebar} col-lg-2`}>
       <h2 className="mb-4">Menu</h2>
       <div className="nav flex-column">
-        <NavLink to="/Member" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}><i className="bi bi-person"> 帳戶</i></NavLink>
+        <NavLink to="/Login" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}><i className="bi bi-person"> 帳戶</i></NavLink>
         <NavLink to="/" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}><i className="bi bi-house"> 首頁</i></NavLink>
         <NavLink to="/AllTasks" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}><i className="bi bi-list"> 所有事項</i></NavLink>
         <NavLink to="/TodayTasks" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}><i className="bi bi-bell-fill"> 今日事項</i></NavLink>
