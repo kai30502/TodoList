@@ -1,5 +1,8 @@
 import styles from './AllTasks.module.css'
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import AuthContext from '../context/AuthContext';
 
 function AllTasks() {
 
@@ -12,11 +15,19 @@ function AllTasks() {
         due_date: string;
     }
 
+    const navigate = useNavigate();
+    const auth = React.useContext(AuthContext);
     const [tasks, setTasks] = useState<Task[]>([]);
 
     useEffect(() => {
         async function fetchTasks() {
-            let data = await fetch('http://localhost:3000/api/todos');
+            if (!auth?.isAuthenticated) {
+                navigate('/login');
+                return;
+            }
+            let data = await fetch('http://localhost:3000/api/todos',{
+                credentials: "include"
+            });
             let tasks = await data.json();
             setTasks(tasks);
         }

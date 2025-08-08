@@ -1,6 +1,9 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
 
+const verifyToken = require('../middlewares/verifytoken');
+
+
 const router = express.Router();
 
 const dbconfig = {
@@ -12,12 +15,16 @@ const dbconfig = {
 };
 
 // 取得所有待辦事項
-router.get('/', async (req: any, res: any) => {
+router.get('/', verifyToken, async (req: any, res: any) => {
     let connection;
+    if (!req.user) {
+        return res.status(403).json({ message: '未授權訪問' });
+    }
     try {
         connection = await mysql.createConnection(dbconfig);
-        let sql = 'SELECT * FROM todos ORDER BY created_at DESC';
-        const [rows] = await connection.execute(sql);
+        const userId = req.user.id;
+        let sql = 'SELECT * FROM todos WHERE user_id = ? ORDER BY created_at DESC';
+        const [rows] = await connection.execute(sql,[userId]);
         res.json(rows);
     } catch (err) {
         console.log("連線失敗", err);
@@ -30,12 +37,13 @@ router.get('/', async (req: any, res: any) => {
 });
 
 // 取得今天過期的待辦事項
-router.get('/todaytasks', async (req: any, res: any) => {
+router.get('/todaytasks', verifyToken, async (req: any, res: any) => {
     let connection;
     try {
         connection = await mysql.createConnection(dbconfig);
-        let sql = 'SELECT * FROM todos WHERE DATE(due_date) = CURDATE() ORDER BY created_at DESC';
-        const [rows] = await connection.execute(sql);
+        const userId = req.user.id;
+        let sql = 'SELECT * FROM todos WHERE DATE(due_date) = CURDATE() AND user_id = ? ORDER BY created_at DESC';
+        const [rows] = await connection.execute(sql,[userId]);
         res.json(rows);
     } catch (err) {
         console.log("連線失敗", err);
