@@ -74,4 +74,23 @@ router.get('/completedtasks', verifyToken, async (req: any, res: any) => {
     }
 });
 
+// 取得未完成的待辦事項
+router.get('/completedtasks', verifyToken, async (req: any, res: any) => {
+    let connection;
+    try {
+        connection = await mysql.createConnection(dbconfig);
+        const userId = req.user.id;
+        let sql = 'SELECT * FROM todos WHERE is_completed = 0 AND user_id = 5 ORDER BY created_at DESC';
+        const [rows] = await connection.execute(sql,[userId]);
+        res.json(rows);
+    } catch (err) {
+        console.log("連線失敗", err);
+        res.status(500).json({message : "連線失敗"});
+    } finally {
+        if (connection) {
+            await connection.end();
+        }
+    }
+});
+
 module.exports = router;
