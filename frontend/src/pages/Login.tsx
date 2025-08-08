@@ -1,11 +1,14 @@
 import styles from './Login.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
+import React from 'react';
 
 
 function Login() {
 
     const navigate = useNavigate();
+    const auth = React.useContext(AuthContext);
 
 
     const [username, setusername] = useState('');
@@ -28,6 +31,11 @@ function Login() {
             const data = await res.json();
 
             if (res.ok) {
+                const userRes = await fetch('http://localhost:3000/api/users', {
+                    credentials: 'include'
+                });
+                const userData = await userRes.json();
+                auth?.login(userData);
                 alert('登入成功！');
                 navigate('/Member');
             } else {
