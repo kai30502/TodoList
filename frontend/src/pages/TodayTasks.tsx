@@ -16,7 +16,9 @@ function TodayTasks() {
 
     useEffect(() => {
         async function fetchTasks() {
-            let data = await fetch('http://localhost:3000/api/todos/todaytasks');
+            let data = await fetch('http://localhost:3000/api/todos/todaytasks',{
+                credentials: 'include'
+            });
             let tasks = await data.json();
             setTasks(tasks);
         }
