@@ -1,5 +1,5 @@
 import styles from './Login.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import React from 'react';
@@ -14,6 +14,12 @@ function Login() {
     const [username, setusername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        if (auth?.isAuthenticated) {
+            navigate('/Member');
+        }
+    }, [auth?.isAuthenticated, navigate]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

@@ -1,8 +1,13 @@
 import styles from './AllTasks.module.css'
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import AuthContext from '../context/AuthContext';
 
 function IncompleteTasks() {
 
+    const navigate = useNavigate();
+    const auth = React.useContext(AuthContext);
     interface Task {
         id: number;
         title: string;
@@ -16,6 +21,11 @@ function IncompleteTasks() {
 
     useEffect(() => {
         async function fetchTasks() {
+            if (!auth?.isAuthenticated) {
+                navigate('/login');
+                alert('請先登入');
+                return;
+            }
             let data = await fetch('http://localhost:3000/api/todos/incompletetasks',{
                 credentials: 'include'
             });

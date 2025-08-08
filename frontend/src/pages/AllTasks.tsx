@@ -23,6 +23,7 @@ function AllTasks() {
         async function fetchTasks() {
             if (!auth?.isAuthenticated) {
                 navigate('/login');
+                alert('請先登入');
                 return;
             }
             let data = await fetch('http://localhost:3000/api/todos',{

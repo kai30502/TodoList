@@ -1,12 +1,22 @@
 import styles from './Member.module.css';
 import AuthContext from '../context/AuthContext';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Member() {
 
     const navigator = useNavigate();
     const auth = React.useContext(AuthContext);
+
+    useEffect(() => {
+        async function checkAuth() {
+            if (!auth?.isAuthenticated) {
+                navigator('/login');
+                alert('請先登入');
+            }
+        }
+        checkAuth();
+    }, []);
 
     return (
         <div className={styles.wrapper}>

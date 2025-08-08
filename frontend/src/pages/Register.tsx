@@ -1,12 +1,15 @@
 import styles from './Login.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import zxcvbn from 'zxcvbn';
+import AuthContext from '../context/AuthContext';
+import React from 'react';
 
 
 function Register() {
 
     const navigate = useNavigate();
+    const auth = React.useContext(AuthContext);
 
 
     const [username, setusername] = useState('');
@@ -15,6 +18,12 @@ function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [passwordStrength, setPasswordStrength] = useState('');
+
+    useEffect(() => {
+        if (auth?.isAuthenticated) {
+            navigate('/Member');
+        }
+    }, [auth?.isAuthenticated, navigate]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
