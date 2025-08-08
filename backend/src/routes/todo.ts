@@ -75,7 +75,7 @@ router.get('/completedtasks', verifyToken, async (req: any, res: any) => {
 });
 
 // 取得未完成的待辦事項
-router.get('/completedtasks', verifyToken, async (req: any, res: any) => {
+router.get('/incompletetasks', verifyToken, async (req: any, res: any) => {
     let connection;
     try {
         connection = await mysql.createConnection(dbconfig);
