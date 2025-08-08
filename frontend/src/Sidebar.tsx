@@ -1,31 +1,17 @@
 import styles from "./Sidebar.module.css";
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React from "react";
+import AuthContext from "./context/AuthContext";
 
 function Sidebar() {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    useEffect(() => {
-        async function checkLogin() {
-            try {
-                const response = await fetch(
-                    'http://localhost:3000/api/users', {
-                    credentials: 'include'
-                });
-                setIsLoggedIn(response.ok)
-            } catch {
-                setIsLoggedIn(false);
-            }
-        }
-        checkLogin()
-    }, []);
+    const auth = React.useContext(AuthContext);
     
     return (
         <nav className={`${styles.sidebar} col-lg-2`}>
         <h2 className="mb-4">Menu</h2>
         <div className="nav flex-column">
-            {isLoggedIn ? 
+            {auth?.isAuthenticated ?
             <NavLink to="/Member" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}><i className="bi bi-people"> 會員中心</i></NavLink> :
             <NavLink to="/Login" className={({ isActive }) => isActive ? `${styles.navLink} ${styles.active}` : styles.navLink}><i className="bi bi-person"> 登入</i></NavLink>
             }
