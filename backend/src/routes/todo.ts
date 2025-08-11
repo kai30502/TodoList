@@ -61,7 +61,7 @@ router.get('/completedtasks', verifyToken, async (req: any, res: any) => {
     try {
         connection = await mysql.createConnection(dbconfig);
         const userId = req.user.id;
-        let sql = 'SELECT * FROM todos WHERE is_completed = 1 AND user_id = 5 ORDER BY created_at DESC';
+        let sql = 'SELECT * FROM todos WHERE is_completed = 1 AND user_id = ? ORDER BY created_at DESC';
         const [rows] = await connection.execute(sql,[userId]);
         res.json(rows);
     } catch (err) {
@@ -80,7 +80,7 @@ router.get('/incompletetasks', verifyToken, async (req: any, res: any) => {
     try {
         connection = await mysql.createConnection(dbconfig);
         const userId = req.user.id;
-        let sql = 'SELECT * FROM todos WHERE is_completed = 0 AND user_id = 5 ORDER BY created_at DESC';
+        let sql = 'SELECT * FROM todos WHERE is_completed = 0 AND user_id = ? ORDER BY created_at DESC';
         const [rows] = await connection.execute(sql,[userId]);
         res.json(rows);
     } catch (err) {
