@@ -16,8 +16,15 @@
 }
 
 .card_content {
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
     margin-bottom: 12px;
 }
+
 
 .AllTasks_title {
     margin-bottom: 50px;

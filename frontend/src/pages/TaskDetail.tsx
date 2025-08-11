@@ -81,9 +81,10 @@ function TaskDetail() {
         <div className={styles.detail_container}>
             <div className={styles.detail_card} style={{ backgroundColor: getColorByEnum(task.color) }}>
                 <h1>{task.title}</h1>
-                <p><strong>建立日期：</strong>{new Date(task.created_at).toLocaleString()}</p>
+
+                <p className={styles.description}><strong>內容：</strong>{task.description}</p>
+
                 <p><strong>截止日期：</strong>{new Date(task.due_date).toLocaleString()}</p>
-                <p><strong>內容：</strong>{task.description}</p>
                 <p>
                     <strong>狀態：</strong>
                     {Number(task.is_completed) === 1 ? '✅ 已完成' : '❌ 未完成'}
@@ -94,6 +95,8 @@ function TaskDetail() {
                     <button className={styles.delete_btn} onClick={handleDelete}>刪除事項</button>
                     <button className={styles.incomplete_btn} onClick={handleIncomplete}>標記為未完成</button>
                 </div>
+
+                <p className={styles.created_at}><strong>建立日期：</strong>{new Date(task.created_at).toLocaleString()}</p>
             </div>
         </div>
     );
