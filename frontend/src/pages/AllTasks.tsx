@@ -42,7 +42,7 @@ function AllTasks() {
                 <div className='col-lg-3 col-md-6 col-sm-12'>
                     <div
                         className={`${styles.single_stick} ${styles.add_card}`}
-                        onClick={() => navigate('/add-task')}
+                        onClick={() => navigate('/addTask')}
                         style={{ cursor: 'pointer' }}
                     >
                         <div className={styles.add_icon}>＋</div>
