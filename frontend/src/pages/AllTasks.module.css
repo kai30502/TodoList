@@ -20,3 +20,41 @@
 .card_content {
     margin-bottom: 12px;
 }
+
+.AllTasks_title {
+    margin-bottom: 50px;
+}
+
+.single_stick {
+    background-color: #CED4DA;
+    padding: 15px;
+    height: 360px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    transition: transform 0.2s ease;
+}
+
+.single_stick:hover {
+    transform: scale(1.02);
+}
+
+.stick_subtitle {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.card_content {
+    margin-bottom: 12px;
+}
+
+.add_card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9ecef;
+}
+
+.add_icon {
+    font-size: 4rem;
+    color: #6c757d;
+}
