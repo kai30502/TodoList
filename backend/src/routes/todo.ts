@@ -215,4 +215,29 @@ router.post('/', verifyToken, async (req: any, res: any) => {
     }
 });
 
+// 更新待辦事項
+router.patch('/:id', verifyToken, async (req: any, res: any) => {
+    const connection = await mysql.createConnection(dbconfig);
+    const { title, description, due_date } = req.body;
+    const taskId = req.params.id;
+    const userId = req.user.id;
+
+    try {
+        const sql = 'UPDATE todos SET title = ?, description = ?, due_date = ? WHERE id = ? AND user_id = ?';
+        const [result] = await connection.execute(sql, [title, description, due_date, taskId, userId]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: '找不到任務或無權限' });
+        }
+
+        const [updated] = await connection.execute('SELECT * FROM todos WHERE id = ?', [taskId]);
+        res.json(updated[0]);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: '更新失敗' });
+    } finally {
+        await connection.end();
+    }
+});
+
 module.exports = router;
