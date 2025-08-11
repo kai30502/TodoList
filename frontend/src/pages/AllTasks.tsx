@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import AuthContext from '../context/AuthContext';
+import getColorByEnum from '../components/getColorByEnum';
 
 function AllTasks() {
 
@@ -39,16 +40,30 @@ function AllTasks() {
         <div className='AllTasks'>
             <h1 className={styles.AllTasks_title}>所有事項</h1>
             <div className={`${styles.stick} row g-3`}>
-            {tasks.map((task, index) => (
-                <div className='col-lg-3 col-md-6 col-sm-12' key={index}>
-                    <div className={styles.single_stick} style={{backgroundColor:`${task.color}`}}>
-                        <h3 className={styles.stick_title}>{task.title}</h3>
-                        <p className={styles.stick_subtitle}>建立日期：{new Date(task.created_at).toLocaleString()}</p>
-                        <p className={styles.stick_subtitle}>截止日期：{new Date(task.due_date).toLocaleString()}</p>
-                        <p className={styles.card_content}>{task.description}</p>
+                <div className='col-lg-3 col-md-6 col-sm-12'>
+                    <div
+                        className={`${styles.single_stick} ${styles.add_card}`}
+                        onClick={() => navigate('/addTask')}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        <div className={styles.add_icon}>＋</div>
                     </div>
                 </div>
-            ))}
+
+                {tasks.map((task, index) => (
+                    <div className='col-lg-3 col-md-6 col-sm-12' key={index}>
+                        <div
+                            className={styles.single_stick}
+                            style={{ backgroundColor: getColorByEnum(task.color), cursor: 'pointer' }}
+                            onClick={() => navigate(`/tasks/${task.id}`)}
+                        >
+                            <h3 className={styles.stick_title}>{task.title}</h3>
+                            <p className={styles.stick_subtitle}>建立日期：{new Date(task.created_at).toLocaleString()}</p>
+                            <p className={styles.stick_subtitle}>截止日期：{new Date(task.due_date).toLocaleString()}</p>
+                            <p className={styles.card_content}>{task.description}</p>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     )
