@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import AuthContext from '../context/AuthContext';
+import getColorByEnum from '../components/getColorByEnum';
 
 function AllTasks() {
 
@@ -53,7 +54,7 @@ function AllTasks() {
                     <div className='col-lg-3 col-md-6 col-sm-12' key={index}>
                         <div
                             className={styles.single_stick}
-                            style={{ backgroundColor: task.color, cursor: 'pointer' }}
+                            style={{ backgroundColor: getColorByEnum(task.color), cursor: 'pointer' }}
                             onClick={() => navigate(`/tasks/${task.id}`)}
                         >
                             <h3 className={styles.stick_title}>{task.title}</h3>

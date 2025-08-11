@@ -2,6 +2,7 @@ import styles from './TaskDetail.module.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import AuthContext from '../context/AuthContext';
+import getColorByEnum from '../components/getColorByEnum';
 
 interface Task {
     id: number;
@@ -78,7 +79,7 @@ function TaskDetail() {
 
     return (
         <div className={styles.detail_container}>
-            <div className={styles.detail_card} style={{ backgroundColor: task.color }}>
+            <div className={styles.detail_card} style={{ backgroundColor: getColorByEnum(task.color) }}>
                 <h1>{task.title}</h1>
                 <p><strong>建立日期：</strong>{new Date(task.created_at).toLocaleString()}</p>
                 <p><strong>截止日期：</strong>{new Date(task.due_date).toLocaleString()}</p>

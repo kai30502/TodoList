@@ -186,4 +186,33 @@ router.delete('/:id', verifyToken, async (req: any, res: any) => {
     }
 });
 
+// 新增待辦事項
+router.post('/', verifyToken, async (req: any, res: any) => {
+    let connection;
+    if (!req.user) {
+        return res.status(403).json({ message: '未授權訪問' });
+    }
+    try {
+        connection = await mysql.createConnection(dbconfig);
+        const { title, description, color, due_date } = req.body;
+        const userId = req.user.id;
+
+        if (!title || !due_date) {
+            return res.status(400).json({ message: '標題和截止日期是必填的' });
+        }
+
+        let sql = 'INSERT INTO todos (title, description, color, due_date, user_id) VALUES (?, ?, ?, ?, ?)';
+        const [result] = await connection.execute(sql, [title, description, color, due_date, userId]);
+
+        res.status(201).json({ message: '任務已新增'});
+    } catch (err) {
+        console.log("連線失敗", err);
+        res.status(500).json({message : "連線失敗"});
+    } finally {
+        if (connection) {
+            await connection.end();
+        }
+    }
+});
+
 module.exports = router;
