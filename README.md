@@ -71,3 +71,8 @@
 - dotenv（環境變數管理）
 - pm2
 - RESTful API 設計
+
+### 部署
+- S3（前端）
+- EC2（後端）
+- RDS for MySQL（資料庫管理）
