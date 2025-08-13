@@ -2,7 +2,6 @@
 
 此 TodoeList 為面試展示用，功能包括註冊、登入、登出、待辦事項新增 / 修改 / 完成 / 刪除，並透過 Token 認證保護使用者資料
 
-按[這裡](http://kaitodolist.s3-website-ap-northeast-1.amazonaws.com/)進入網站
 ---
 
 ## 功能列表
@@ -72,7 +71,3 @@
 - pm2
 - RESTful API 設計
 
-### 部署
-- S3（前端）
-- EC2（後端）
-- RDS for MySQL（資料庫管理）
