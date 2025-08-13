@@ -63,11 +63,12 @@
 
 ### 後端
 - Node.js + Express
+- TypeScript
 - MySQL（使用 mysql2/promise）
 - JWT 驗證（儲存在 Cookie）
 - bcrypt 加密密碼
 - CORS / Cookie 中介處理
 - dotenv（環境變數管理）
-- pm2
 - RESTful API 設計
+
 
