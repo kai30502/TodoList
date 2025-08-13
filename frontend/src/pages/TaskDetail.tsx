@@ -24,7 +24,7 @@ function TaskDetail() {
 
     useEffect(() => {
         async function fetchTask() {
-            if (!auth?.isAuthenticated) {
+            if (!auth?.isLoading && !auth?.isAuthenticated) {
                 navigate('/login');
                 alert('請先登入');
                 return;
@@ -45,7 +45,7 @@ function TaskDetail() {
         }
 
         fetchTask();
-    }, [id]);
+    }, [id, auth?.isLoading]);
 
     async function handleComplete() {
         await fetch(`http://localhost:3000/api/todos/${id}/complete`, {

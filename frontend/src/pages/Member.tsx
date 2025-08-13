@@ -10,13 +10,13 @@ function Member() {
 
     useEffect(() => {
         async function checkAuth() {
-            if (!auth?.isAuthenticated) {
+            if (!auth?.isLoading && !auth?.isAuthenticated) {
                 navigator('/login');
                 alert('請先登入');
             }
         }
         checkAuth();
-    }, []);
+    }, [auth?.isLoading]);
 
     return (
         <div className={styles.wrapper}>

@@ -5,6 +5,7 @@ interface AuthContextType {
     user: { id: string; username: string; email: string; created_at: string; } | null;
     login: (user: { id: string; username: string; email: string; created_at: string }) => void;
     logout: () => void;
+    isLoading: boolean;
 }
 
 const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
@@ -13,6 +14,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     type User = { id: string; username: string; email: string; created_at: string } | null;
     const [user, setUser] = useState<User>(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     // 登入驗證：元件掛載時自動檢查
     useEffect(() => {
@@ -32,6 +34,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             } catch {
                 setUser(null);
                 setIsAuthenticated(false);
+            } finally {
+                setIsLoading(false);
             }
         }
         checkAuth();
@@ -48,7 +52,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, login, logout, isLoading }}>
             {children}
         </AuthContext.Provider>
     );

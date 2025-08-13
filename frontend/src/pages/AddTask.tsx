@@ -15,7 +15,7 @@ function AddTask() {
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
-        if (!auth?.isAuthenticated) {
+        if (!auth?.isLoading && !auth?.isAuthenticated) {
             alert('請先登入');
             navigate('/login');
             return;

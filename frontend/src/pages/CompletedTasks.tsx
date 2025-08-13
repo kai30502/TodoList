@@ -22,7 +22,7 @@ function CompletedTasks() {
 
     useEffect(() => {
         async function fetchTasks() {
-            if (!auth?.isAuthenticated) {
+            if (!auth?.isLoading && !auth?.isAuthenticated) {
                 navigate('/login');
                 alert('請先登入');
                 return;
@@ -34,7 +34,7 @@ function CompletedTasks() {
             setTasks(tasks);
         }
         fetchTasks();
-    }, []);
+    }, [auth?.isLoading]);
 
     return (
         <div className='AllTasks'>
